@@ -1,15 +1,12 @@
 def is_prime_num?(num)
   if num == 1 
-    puts "#{num} is not a Prime nor Composite."
-    return nil
+    return "#{num} is not a Prime nor Composite."
   elsif num <1 
-    puts "Number is less than 1."
-    return nil
+    return  "Number is less than 1."
   else
     for i in (2 .. num/2).to_a do
       if (num%i)==0 
         return "#{num} is not a Prime Number."
-        return nil
       end
     end
   end
@@ -18,4 +15,4 @@ end
 
 puts "Enter the Number : "
 num = gets.to_i
-puts is_prime_um?(num)
+puts is_prime_num?(num)

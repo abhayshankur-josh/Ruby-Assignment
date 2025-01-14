@@ -18,8 +18,8 @@ def regex_email(email)
 end
 
 def regex_gender(gender)
-  pattern = /^(M|F)$/
-  if pattern.match?(gender) 
+  pattern = /^(male|female)+$/
+  if pattern.match?(gender.down) 
     return "Valid Gender."
   else 
     return "Invalid Gender."
@@ -46,7 +46,7 @@ end
 
 print("Enter Your Name:"); name = gets
 print("Enter Your Email: "); email = gets
-print("Enter Your Gender (eg: M|F):"); gender = gets
+print("Enter Your Gender):"); gender = gets
 print("Enter Your Contact Number:"); phone = gets
 print("Enter Your Amount:"); amount = gets
 
