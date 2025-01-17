@@ -1,3 +1,18 @@
+=begin
+  Assignment - 
+   A CLI application for handling data of as many countries as we can. Example of what data that we can have:
+    -Population
+    -GDP(Gross Domestic Production)
+    -States
+    -Army Strength
+    -State of country(developing, developed)
+  
+  On the basis of all these data we will be building modules to conceive various outputs like:
+    -Whether that country will get a loan from the IMF (International Monetary Fund) or WB (World bank).
+    -Whether the country can have a seat in the UN (United Nations) Security council.
+    -Whether the country can win the war or not
+=end
+
 # frozen_string_literal: true
 require 'io/console'
 require_relative 'countries_data.rb'
@@ -5,7 +20,7 @@ require_relative 'country.rb'
 
 # CLIApplication class to manage the CLI application.
 class CLIApplication # rubocop:disable Metrics/ClassLength
-  # include CountriesData
+  include CountriesData
 
   def initialize
     @countries = COUNTRIES_DATA.map do |country_data|

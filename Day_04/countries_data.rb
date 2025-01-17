@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-#Class to store countries data.
-# module CountriesData
+#Module to store countries data.
+module CountriesData
   COUNTRIES_DATA = [
     {
       country_name: 'United States',
@@ -54,4 +54,4 @@
       international_influence: 'high'
     }
   ].freeze
-# end
+end
