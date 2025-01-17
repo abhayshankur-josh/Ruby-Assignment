@@ -3,19 +3,47 @@ require_relative 'hangman_words'
 
 class Hangman 
     
-    private
-
     def initialize
         @level = 1
         @chances = 5 
-        @hangman_words = HANGMAN_WORDS
+        @hangman_words = HangmanWords::HANGMAN_WORDS
         @sample_hint, @sample_word = pick_random_word_and_hint 
         @actual_word = @sample_word.clone 
         @guess_word = Array.new(@sample_word.length, "_") 
         @track_letters = []
-
+    end
+ 
+    def self.game_title
+        print"
+            ------------------------------------
+            * * * Welcome to Hangman Game! * * * 
+            ------------------------------------
+        " 
     end
 
+    def start_game
+        while @level<6 and play do 
+            system("clear")
+            print "\n
+                ---------------------------------------------------------------
+                *               Get ready to level up yourself!!
+                ---------------------------------------------------------------
+            "
+            @chances=5
+            @sample_hint, @sample_word = pick_random_word_and_hint 
+            @actual_word = @sample_word.clone 
+            @guess_word = Array.new(@sample_word.length, "_") 
+            @track_letters = []
+            sleep(3)
+            system("clear")
+
+            self.class.game_title
+
+        end
+    end
+
+    private
+    
     def pick_random_word_and_hint 
         sample_hint = @hangman_words[@level].keys.sample 
         sample_word = @hangman_words[@level][sample_hint].downcase.split('') 
@@ -87,43 +115,5 @@ class Hangman
         false
     end
 
-    public 
-    def start_game
-        while @level<6 and play do 
-            system("clear")
-            print "\n
-                ---------------------------------------------------------------
-                *               Get ready to level up yourself!!
-                ---------------------------------------------------------------
-            "
-            @chances=5
-            @sample_hint, @sample_word = pick_random_word_and_hint 
-            @actual_word = @sample_word.clone 
-            @guess_word = Array.new(@sample_word.length, "_") 
-            @track_letters = []
-            sleep(3)
-            system("clear")
-
-            self.class.game_title
-
-        end
-    end
-
-    def self.game_title
-        print"
-            ------------------------------------
-            * * * Welcome to Hangman Game! * * * 
-            ------------------------------------
-        " 
-    end
 end
 
-class Game 
-    def self.main 
-        system('clear')
-        Hangman.game_title
-        Hangman.new.start_game 
-    end 
-end 
-
-Game.main
