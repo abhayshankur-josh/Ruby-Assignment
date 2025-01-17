@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 require 'io/console'
-require_relative 'countries_data'
-require_relative 'class_country'
+require_relative 'countries_data.rb'
+require_relative 'country.rb'
 
 # CLIApplication class to manage the CLI application.
 class CLIApplication # rubocop:disable Metrics/ClassLength
+  # include CountriesData
 
   def initialize
     @countries = COUNTRIES_DATA.map do |country_data|
@@ -19,7 +20,6 @@ class CLIApplication # rubocop:disable Metrics/ClassLength
         country_data[:international_influence]
       )
     end
-    p @countries
   end
 
   def main
@@ -48,6 +48,8 @@ class CLIApplication # rubocop:disable Metrics/ClassLength
         country_index = gets.chomp.to_i - 1
         raise 'Invalid country index.' if country_index.negative? || country_index >= @countries.size
         p "\nEvaluate..."
+        p "\n #{@countries[country_index].get_loan}"
+        p "\n #{@countries[country_index].seat_in_council}"
         p "\n #{@countries[country_index].win_war}"
         $stdin.getch
       when 4

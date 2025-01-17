@@ -1,7 +1,7 @@
 # rubocop:disable Layout/LineLength
 # frozen_string_literal: true
 
-require_relative 'module_country_evaluator'
+require_relative 'country_evaluator'
  
 # Country class to store country data.
 class Country
