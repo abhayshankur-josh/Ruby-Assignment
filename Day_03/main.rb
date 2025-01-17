@@ -1,5 +1,5 @@
 #Game Class for main execution
-require_relative 'class_hangman'
+require_relative 'hangman'
 class Game
   def self.main 
     system('clear')
