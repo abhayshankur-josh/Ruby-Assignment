@@ -40,7 +40,7 @@ end
 
 # start_game is the entry point for the game and has the Game Logic and operations and calculation.
 def start_game
-  chance = 5
+  chances = 5
 
   #getting hangman words from function.
   hangman_words = get_hangman_words
@@ -54,10 +54,10 @@ def start_game
   guess_word = Array.new(sample_word.length,"_")
   track_letters = Array.new()
 
-  while chance>0
+  while chances>0
     puts "\n 
     (-------------------------------)
-    (  Chance left :#{chance}       
+    (  Chance left :#{chances}       
     (  Your Hint is #{sample_hint}  
     (-------------------------------)
     "    
@@ -75,7 +75,7 @@ def start_game
       end
       puts "You guessed correct letter :#{char}"
     else
-      chance-=1 
+      chances-=1 
     end
 
     # Keeping a track of letters entered.
