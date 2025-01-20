@@ -38,47 +38,35 @@ class CLIApplication # rubocop:disable Metrics/ClassLength
   end
 
   def main
-    loop do
-      system('clear')
-      display_menu
-      print 'Choose an option:'
+    begin
+      loop do
+        system('clear')
+        display_menu
 
-      choice = $stdin.getch.to_i
-      print choice
+        choice = $stdin.getch.to_i
+        print choice
 
-      case choice
-      when 1
-        add_country
-      when 2
-        puts
-        print 'Listing countries...'
-        puts
-        puts list_countries
-        puts 'Press any key to continue...'
-        $stdin.getch        
-      when 3
-        puts
-        @countries.each_with_index { |country, index| puts "#{index + 1}. #{country.name}" }
-        print "Choose a country to evaluate:"
-        country_index = gets.chomp.to_i - 1
-        raise 'Invalid country index.' if country_index.negative? || country_index >= @countries.size
-        p "\nEvaluate..."
-        p "\n #{@countries[country_index].get_loan}"
-        p "\n #{@countries[country_index].seat_in_council}"
-        p "\n #{@countries[country_index].win_war}"
-        $stdin.getch
-      when 4
-        puts "\n Exiting..."
-        sleep(1)
-        break
-      else
-        puts "\n Invalid choice. Please try again."
-        sleep(2)
-        raise
+        case choice
+        when 1
+          add_country
+        when 3
+          evaluate_country
+        when 2
+          list_countries
+        when 4
+          puts "\n Exiting..."
+          sleep(1)
+          break
+        else
+          puts choice
+          puts "\n Invalid choice. Please try again."
+          sleep(2)
+          raise
+        end
       end
+    rescue StandardError
+      retry
     end
-  rescue StandardError
-    retry
   end
 
   private
@@ -89,10 +77,30 @@ class CLIApplication # rubocop:disable Metrics/ClassLength
     p "2. List"
     p "3. Evaluate"
     p "4. Exit"
+    print 'Choose an option:'
+  end
+  
+  def evaluate_country
+    puts
+    @countries.each_with_index { |country, index| puts "#{index + 1}. #{country.country_name}" }
+    print "Choose a country to evaluate:"
+    country_index = gets.chomp.to_i - 1
+    raise 'Invalid country index.' if country_index.negative? || country_index >= @countries.size
+    p "\nEvaluate..."
+    p "\n #{@countries[country_index].get_loan}"
+    p "\n #{@countries[country_index].seat_in_council}"
+    p "\n #{@countries[country_index].win_war}"
+    puts 'Press any key to continue...'
+    $stdin.getch
   end
 
   def list_countries
+    puts
+    print 'Listing countries...'
+    puts
     @countries.each { |country| puts country.to_s }
+    puts 'Press any key to continue...'
+    $stdin.getch        
   end
 
   def add_country

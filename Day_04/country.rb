@@ -7,12 +7,12 @@ require_relative 'country_evaluator'
 class Country
   include CountryEvaluator
   
-  attr_accessor :name, :population, :gdp, :states, :army_strength, :development_status, :political_stability,
+  attr_accessor :country_name, :population, :gdp, :states, :army_strength, :development_status, :political_stability,
                 :international_influence
 
-  def initialize(name, population, gdp, states, army_strength, development_status, political_stability,
+  def initialize(country_name, population, gdp, states, army_strength, development_status, political_stability,
                  international_influence)
-    @name = name
+    @country_name = country_name
     @population = population
     @gdp = gdp
     @states = states
@@ -23,7 +23,7 @@ class Country
   end
 
   def to_s
-    "Country: #{@name}, Population: #{@population}, GDP: #{@gdp}, States: #{@states}, Army Strength: #{@army_strength}, Development Status: #{@development_status}, Political Stability: #{@political_stability}, International Influence: #{@international_influence}"
+    "Country: #{country_name}, Population: #{population}, GDP: #{gdp}, States: #{states}, Army Strength: #{army_strength}, Development Status: #{development_status}, Political Stability: #{political_stability}, International Influence: #{international_influence}"
   end
 end
 # rubocop:enable Layout/LineLength
